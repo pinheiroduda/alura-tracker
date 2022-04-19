@@ -1,6 +1,8 @@
 <template>
   <div class="box has-text-weight-bold">
-    <div class="column is-7">{{ tarefa.descricao }}</div>
+    <div class="column is-7">
+      {{ tarefa.descricao || 'Tarefa sem descrição' }}
+    </div>
     <div class="column">
       <CronometroComponent :tempoEmSegundos="tarefa.duracaoEmSegundos" />
     </div>
