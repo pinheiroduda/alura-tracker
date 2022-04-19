@@ -6,7 +6,11 @@
     <div class="column is-three-quarter">
       <FormularioComponent @aoSalvarTarefa="salvarTarefa" />
       <div class="lista">
-        <TarefaComponent v-for="(tarefa, index) in tarefas" :key="index" />
+        <TarefaComponent
+          v-for="(tarefa, index) in tarefas"
+          :key="index"
+          :tarefa="tarefa"
+        />
       </div>
     </div>
   </main>
