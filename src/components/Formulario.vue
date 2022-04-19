@@ -25,7 +25,7 @@
             </span>
             <span>play</span>
           </button>
-          <button class="button">
+          <button class="button" @click="finalizar">
             <span class="icon">
               <i class="fas fa-stop"></i>
             </span>
@@ -45,7 +45,8 @@ export default defineComponent({
 
   data() {
     return {
-      tempoEmSegundos: 0
+      tempoEmSegundos: 0,
+      cronometro: 0
     }
   },
 
@@ -59,10 +60,12 @@ export default defineComponent({
 
   methods: {
     iniciar() {
-      setInterval(() => {
+      this.cronometro = setInterval(() => {
         this.tempoEmSegundos += 1
       }, 1000)
-      console.log('iniciando')
+    },
+    finalizar() {
+      clearInterval(this.cronometro)
     }
   }
 })
