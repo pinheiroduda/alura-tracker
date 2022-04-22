@@ -1,6 +1,7 @@
 <template>
   <div class="projetos">
     <h1 class="title">Projetos</h1>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -11,3 +12,9 @@ export default defineComponent({
   name: 'ProjetosView'
 })
 </script>
+
+<style scoped>
+.projetos {
+  padding: 1.25rem;
+}
+</style>
