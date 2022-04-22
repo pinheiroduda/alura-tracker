@@ -20,12 +20,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useStore } from '@/store'
-import {
-  ADICIONA_PROJETO,
-  ALTERA_PROJETO,
-  NOTIFICA
-} from '../../store/tipo-mutacoes'
+import { ADICIONA_PROJETO, ALTERA_PROJETO } from '../../store/tipo-mutacoes'
 import { TipoNotificacao } from '@/interfaces/INotificacao'
+import { notificacaoMixin } from '@/mixins/notificar'
 
 export default defineComponent({
   name: 'FormularioView',
@@ -35,6 +32,8 @@ export default defineComponent({
       type: String
     }
   },
+
+  mixins: [notificacaoMixin],
 
   mounted() {
     if (this.id) {
@@ -62,11 +61,11 @@ export default defineComponent({
         this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto)
       }
       this.nomeDoProjeto = ''
-      this.store.commit(NOTIFICA, {
-        titulo: 'Novo projeto salvo',
-        texto: 'Pronto! Seu projeto já está disponível. 🙂',
-        tipo: TipoNotificacao.SUCESSO
-      })
+      this.notificar(
+        TipoNotificacao.SUCESSO,
+        'Sucesso!',
+        'O projeto foi salvo com sucesso.'
+      )
       this.$router.push('/projetos')
     }
   },
