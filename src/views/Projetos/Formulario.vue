@@ -35,6 +35,7 @@ export default defineComponent({
     salvar() {
       this.store.commit('ADICIONA_PROJETO', this.nomeDoProjeto)
       this.nomeDoProjeto = ''
+      this.$router.push('/projetos')
     }
   },
   setup() {
