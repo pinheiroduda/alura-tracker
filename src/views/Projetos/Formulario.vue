@@ -1,5 +1,5 @@
 <template>
-  <section class="projetos">
+  <section>
     <h1 class="title">Projetos</h1>
     <form @submit.prevent="salvar">
       <div class="field">
