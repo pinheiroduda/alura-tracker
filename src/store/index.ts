@@ -23,6 +23,9 @@ export const store = createStore<Estado>({
     'ALTERA_PROJETO'(state, projeto: IProjeto) {
       const index = state.projetos.findIndex( projeto => projeto.id === projeto.id)
       state.projetos[index] = projeto
+    },
+    'EXCLUI_PROJETO'(state, id: string) {
+     state.projetos = state.projetos.filter(projeto => projeto.id !== projeto.id)
     }
   }
 })

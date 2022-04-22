@@ -24,6 +24,11 @@
                 <i class="fas fa-pencil-alt"></i>
               </span>
             </router-link>
+            <button class="button m1-2 is-danger" @click="excluir(projeto.id)">
+              <span class="icon is-smal">
+                <i class="fas fa-trash"></i>
+              </span>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -38,9 +43,16 @@ import { useStore } from '@/store'
 export default defineComponent({
   name: 'ListaView',
 
+  methods: {
+    excluir(id: string) {
+      this.store.commit('EXCLUI_PROJETO', id)
+    }
+  },
+
   setup() {
     const store = useStore()
     return {
+      store,
       projetos: computed(() => store.state.projetos)
     }
   }
