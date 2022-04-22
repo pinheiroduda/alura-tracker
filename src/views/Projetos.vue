@@ -15,6 +15,20 @@
         <button type="submit" class="button">Salvar</button>
       </div>
     </form>
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="projeto in projetos" :key="projeto.id">
+          <td>{{ projeto.id }}</td>
+          <td>{{ projeto.nome }}</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 </template>
 
