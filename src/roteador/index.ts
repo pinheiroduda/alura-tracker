@@ -11,19 +11,25 @@ const rotas: RouteRecordRaw[] = [
   },
   {
     path:'/projetos',
-    name: 'Projetos',
-    component: Projetos
-  },
-  {
-    path: '/projetos/novo',
-    name: 'Novo projeto',
-    component: Formulario
-  },
-  {
-    path:'/projetos/:id',
-    name: 'Editar projeto',
-    component: Formulario,
-    props: true
+    component: Projetos,
+    children: [
+      {
+        path:'',
+        name: 'Projetos',
+        component: Projetos
+      },
+      {
+        path: '/novo',
+        name: 'Novo projeto',
+        component: Formulario
+      },
+      {
+        path:'/:id',
+        name: 'Editar projeto',
+        component: Formulario,
+        props: true
+      }
+    ]
   }
 ]
 
