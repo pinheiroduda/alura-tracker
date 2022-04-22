@@ -20,7 +20,7 @@ import BoxComponent from '../components/Box.vue'
 import ITarefa from '../interfaces/ITarefa'
 
 export default defineComponent({
-  name: 'App',
+  name: 'TarefasView',
 
   data() {
     return {
