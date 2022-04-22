@@ -25,6 +25,21 @@ import { useStore } from '@/store'
 export default defineComponent({
   name: 'FormularioView',
 
+  props: {
+    id: {
+      type: String
+    }
+  },
+
+  mounted() {
+    if (this.id) {
+      const projeto = this.store.state.projetos.find(
+        projeto => projeto.id === this.id
+      )
+      this.nomeDoProjeto = projeto?.nome || ''
+    }
+  },
+
   data() {
     return {
       nomeDoProjeto: ''
