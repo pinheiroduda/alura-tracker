@@ -27,7 +27,8 @@ export default defineComponent({
 
   data() {
     return {
-      nomeDoProjeto: ''
+      nomeDoProjeto: '',
+      projetos: [] as IProjeto[]
     }
   },
 
@@ -37,6 +38,8 @@ export default defineComponent({
         id: new Date().toISOString(),
         nome: this.nomeDoProjeto
       }
+      this.projetos.push(projeto)
+      this.nomeDoProjeto = ''
     }
   }
 })
