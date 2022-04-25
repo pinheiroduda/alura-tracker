@@ -2,7 +2,7 @@ import { INotificacao } from "@/interfaces/INotificacao";
 import IProjeto from "@/interfaces/IProjeto";
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUseStore } from "vuex";
-import { ALTERAR_PROJETO, CADASTRAR_PROJETO, OBTER_PROJETOS } from "./tipo-acoes";
+import { ALTERAR_PROJETO, CADASTRAR_PROJETO, OBTER_PROJETOS, REMOVER_PROJETO } from "./tipo-acoes";
 import {ADICIONA_PROJETO, ALTERA_PROJETO, DEFINE_PROJETOS, EXCLUI_PROJETO, NOTIFICA} from './tipo-mutacoes';
 import http from "@/http"
 
@@ -60,6 +60,9 @@ export const store = createStore<Estado>({
     }, 
     [ALTERAR_PROJETO] (contexto, projeto: IProjeto) {
       return http.put(`/projetos/${projeto.id}`, projeto)
+    },
+    [REMOVER_PROJETO] (contexto, id: string) {
+      return http.delete(`/projetos/${id}`)
     }
   }
 })
