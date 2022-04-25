@@ -10,12 +10,12 @@
       <ul>
         <li>
           <router-link to="/" class="link">
-            <i class="fas fa-tasks"> tarefas</i>
+            <i class="fas fa-tasks"></i> Tarefas
           </router-link>
         </li>
         <li>
           <router-link to="/projetos" class="link">
-            <i class="fas fa-project-diagram"> projetos</i>
+            <i class="fas fa-project-diagram"></i> Projetos
           </router-link>
         </li>
       </ul>
