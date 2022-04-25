@@ -2,7 +2,7 @@ import { INotificacao } from "@/interfaces/INotificacao";
 import IProjeto from "@/interfaces/IProjeto";
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUseStore } from "vuex";
-import { CADASTRAR_PROJETO, OBTER_PROJETOS } from "./tipo-acoes";
+import { ALTERAR_PROJETO, CADASTRAR_PROJETO, OBTER_PROJETOS } from "./tipo-acoes";
 import {ADICIONA_PROJETO, ALTERA_PROJETO, DEFINE_PROJETOS, EXCLUI_PROJETO, NOTIFICA} from './tipo-mutacoes';
 import http from "@/http"
 
@@ -54,9 +54,12 @@ export const store = createStore<Estado>({
       .then(resposta => commit(DEFINE_PROJETOS, resposta.data))
     },
     [CADASTRAR_PROJETO] (contexto, nomeDoProjeto: string) {
-      http.post('/projetos', {
+      return http.post('/projetos', {
         nome: nomeDoProjeto
       })
+    }, 
+    [ALTERAR_PROJETO] (contexto, projeto: IProjeto) {
+      return http.put(`/projetos/${projeto.id}`, projeto)
     }
   }
 })
