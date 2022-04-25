@@ -18,7 +18,12 @@ import FormularioComponent from '../components/Formulario.vue'
 import TarefaComponent from '../components/Tarefa.vue'
 import BoxComponent from '../components/Box.vue'
 import { useStore } from '@/store'
-import { OBTER_TAREFAS } from '@/store/tipo-acoes'
+import {
+  CADASTRAR_TAREFA,
+  OBTER_PROJETOS,
+  OBTER_TAREFAS
+} from '@/store/tipo-acoes'
+import ITarefa from '@/interfaces/ITarefa'
 
 export default defineComponent({
   name: 'TarefasView',
@@ -30,9 +35,9 @@ export default defineComponent({
   },
 
   methods: {
-    // salvarTarefa(tarefa: ITarefa) {
-    //   this.tarefas.push(tarefa)
-    // }
+    salvarTarefa(tarefa: ITarefa) {
+      this.store.dispatch(CADASTRAR_TAREFA, tarefa)
+    }
   },
 
   computed: {
@@ -44,6 +49,7 @@ export default defineComponent({
   setup() {
     const store = useStore()
     store.dispatch(OBTER_TAREFAS)
+    store.dispatch(OBTER_PROJETOS)
     return {
       store,
       tarefas: computed(() => store.state.tarefas)
