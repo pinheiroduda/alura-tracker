@@ -8,7 +8,7 @@ import ITarefa from "@/interfaces/ITarefa";
 
 import {  ALTERAR_TAREFA,CADASTRAR_TAREFA, OBTER_TAREFAS} from "./tipo-acoes";
 import { ADICIONAR_TAREFA, ALTERA_TAREFA, DEFINIR_TAREFAS, NOTIFICAR} from './tipo-mutacoes';
-import { EstadoDoProjeto } from "./modulos/projeto";
+import { EstadoDoProjeto, projeto } from "./modulos/projeto";
 
 
 export interface Estado {
@@ -51,7 +51,6 @@ export const store = createStore<Estado>({
   },
   
   actions: {
-    
     [OBTER_TAREFAS] ({commit}) {
       http.get('tarefas')
         .then(resposta => commit(DEFINIR_TAREFAS, resposta.data))
@@ -64,6 +63,10 @@ export const store = createStore<Estado>({
       return http.put(`/tarefas/${tarefa.id}`, tarefa)
       .then(() => commit(ALTERA_TAREFA, tarefa))
     },
+  }, 
+
+  modules: {
+    projeto
   }
 })
 
