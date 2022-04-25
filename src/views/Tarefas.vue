@@ -13,19 +13,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import FormularioComponent from '../components/Formulario.vue'
 import TarefaComponent from '../components/Tarefa.vue'
 import BoxComponent from '../components/Box.vue'
-import ITarefa from '../interfaces/ITarefa'
+import { useStore } from '@/store'
+import { OBTER_TAREFAS } from '@/store/tipo-acoes'
 
 export default defineComponent({
   name: 'TarefasView',
 
-  data() {
-    return {
-      tarefas: [] as ITarefa[]
-    }
+  components: {
+    FormularioComponent,
+    TarefaComponent,
+    BoxComponent
+  },
+
+  methods: {
+    // salvarTarefa(tarefa: ITarefa) {
+    //   this.tarefas.push(tarefa)
+    // }
   },
 
   computed: {
@@ -34,16 +41,13 @@ export default defineComponent({
     }
   },
 
-  methods: {
-    salvarTarefa(tarefa: ITarefa) {
-      this.tarefas.push(tarefa)
+  setup() {
+    const store = useStore()
+    store.dispatch(OBTER_TAREFAS)
+    return {
+      store,
+      tarefas: computed(() => store.state.tarefas)
     }
-  },
-
-  components: {
-    FormularioComponent,
-    TarefaComponent,
-    BoxComponent
   }
 })
 </script>
