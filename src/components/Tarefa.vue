@@ -1,15 +1,15 @@
 <template>
   <BoxComponent>
-    <div class="columns">
+    <div class="columns" @click="tarefaClicada">
       <div class="column is-4">
-      {{ tarefa.descricao || 'Tarefa sem descrição' }}
-    </div>
-    <div class="column is-3">
-      {{tarefa.projeto?.nome || 'N/D'}}
-    </div>
-    <div class="column">
-      <CronometroComponent :tempoEmSegundos="tarefa.duracaoEmSegundos" />
-    </div>
+        {{ tarefa.descricao || 'Tarefa sem descrição' }}
+      </div>
+      <div class="column is-3">
+        {{ tarefa.projeto?.nome || 'N/D' }}
+      </div>
+      <div class="column">
+        <CronometroComponent :tempoEmSegundos="tarefa.duracaoEmSegundos" />
+      </div>
     </div>
   </BoxComponent>
 </template>
@@ -23,6 +23,8 @@ import ITarefa from '@/interfaces/ITarefa'
 export default defineComponent({
   name: 'TarefaComponent',
 
+  emits: ['aoClicarNaTarefa'],
+
   components: {
     CronometroComponent,
     BoxComponent
@@ -32,6 +34,12 @@ export default defineComponent({
     tarefa: {
       type: Object as PropType<ITarefa>,
       required: true
+    }
+  },
+
+  methods: {
+    tarefaClicada(): void {
+      this.$emit('aoClicarNaTarefa', this.tarefa)
     }
   }
 })
