@@ -15,14 +15,18 @@
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Edite sua tarefa</p>
-          <button class="delete" aria-label="close"></button>
+          <button
+            class="delete"
+            aria-label="close"
+            @click="fecharModal"
+          ></button>
         </header>
         <section class="modal-card-body">
           <!-- Content ... -->
         </section>
         <footer class="modal-card-foot">
           <button class="button is-success">Salvar alterações</button>
-          <button class="button">Cancelar</button>
+          <button class="button" @click="fecharModal">Cancelar</button>
         </footer>
       </div>
     </div>
@@ -63,6 +67,9 @@ export default defineComponent({
     },
     selecionarTarefa(tarefa: ITarefa) {
       this.tarefaSelecionada = tarefa
+    },
+    fecharModal() {
+      this.tarefaSelecionada = null
     }
   },
 
