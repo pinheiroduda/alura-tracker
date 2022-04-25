@@ -3,7 +3,7 @@ import IProjeto from "@/interfaces/IProjeto";
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUseStore } from "vuex";
 import { ALTERAR_PROJETO, CADASTRAR_PROJETO, OBTER_PROJETOS, OBTER_TAREFAS, REMOVER_PROJETO } from "./tipo-acoes";
-import {ADICIONA_PROJETO, ALTERA_PROJETO, DEFINE_PROJETOS, DEFINIR_TAREFAS, EXCLUI_PROJETO, NOTIFICA} from './tipo-mutacoes';
+import {ADICIONAR_PROJETO, ALTERA_PROJETO, DEFINIR_PROJETOS, DEFINIR_TAREFAS, EXCLUIR_PROJETO, NOTIFICAR} from './tipo-mutacoes';
 import http from "@/http"
 import ITarefa from "@/interfaces/ITarefa";
 
@@ -24,7 +24,7 @@ export const store = createStore<Estado>({
   },
 
   mutations: {
-    [ADICIONA_PROJETO](state, nomeDoProjeto: string) {
+    [ADICIONAR_PROJETO](state, nomeDoProjeto: string) {
       const projeto = {
         id: new Date().toISOString(),
         nome: nomeDoProjeto
@@ -35,16 +35,16 @@ export const store = createStore<Estado>({
       const index = state.projetos.findIndex( projeto => projeto.id === projeto.id)
       state.projetos[index] = projeto
     },
-    [EXCLUI_PROJETO](state, id: string) {
+    [EXCLUIR_PROJETO](state, id: string) {
      state.projetos = state.projetos.filter(projeto => projeto.id !== id)
     },
-    [DEFINE_PROJETOS](state, projetos: IProjeto[]) {
+    [DEFINIR_PROJETOS](state, projetos: IProjeto[]) {
       state.projetos = projetos
     },
     [DEFINIR_TAREFAS](state, tarefas: ITarefa[]) {
       state.tarefas = tarefas
     },
-    [NOTIFICA](state, novaNotificacao: INotificacao) {
+    [NOTIFICAR](state, novaNotificacao: INotificacao) {
       novaNotificacao.id = new Date().getTime()
       state.notificacoes.push(novaNotificacao)
 
@@ -57,7 +57,7 @@ export const store = createStore<Estado>({
   actions: {
     [OBTER_PROJETOS] ({commit}) {
       http.get('projetos')
-      .then(resposta => commit(DEFINE_PROJETOS, resposta.data))
+      .then(resposta => commit(DEFINIR_PROJETOS, resposta.data))
     },
     [CADASTRAR_PROJETO] (contexto, nomeDoProjeto: string) {
       return http.post('/projetos', {
@@ -69,7 +69,7 @@ export const store = createStore<Estado>({
     },
     [REMOVER_PROJETO] ({ commit}, id: string) {
       return http.delete(`/projetos/${id}`)
-        .then(() => { commit(EXCLUI_PROJETO, id)})
+        .then(() => { commit(EXCLUIR_PROJETO, id)})
     },
     [OBTER_TAREFAS] ({commit}) {
       http.get('tarefas')
