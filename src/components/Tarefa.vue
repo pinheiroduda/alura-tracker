@@ -1,6 +1,6 @@
 <template>
   <BoxComponent>
-    <div class="columns" @click="tarefaClicada">
+    <div class="columns hover" @click="tarefaClicada">
       <div class="column is-4">
         {{ tarefa.descricao || 'Tarefa sem descrição' }}
       </div>
@@ -44,3 +44,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.hover {
+  cursor: pointer;
+}
+</style>
