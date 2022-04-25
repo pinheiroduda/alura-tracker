@@ -10,7 +10,11 @@
     <BoxComponent v-if="listaEstaVazia">
       Ainda não foi registrada nenhuma tarefa hoje:/
     </BoxComponent>
-    <div class="modal" :class="{ 'is-active': tarefaSelecionada }">
+    <div
+      class="modal"
+      :class="{ 'is-active': tarefaSelecionada }"
+      v-if="tarefaSelecionada"
+    >
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
@@ -22,7 +26,15 @@
           ></button>
         </header>
         <section class="modal-card-body">
-          <!-- Content ... -->
+          <div class="field">
+            <label for="descricaoDaTarefa" class="label">Descrição</label>
+            <input
+              type="text"
+              class="input"
+              v-model="tarefaSelecionada.descricao"
+              id="descricaoDaTarefa"
+            />
+          </div>
         </section>
         <footer class="modal-card-foot">
           <button class="button is-success">Salvar alterações</button>
