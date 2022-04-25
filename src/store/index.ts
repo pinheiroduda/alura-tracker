@@ -9,10 +9,11 @@ import ITarefa from "@/interfaces/ITarefa";
 
 import {  ALTERAR_TAREFA,CADASTRAR_TAREFA, OBTER_TAREFAS} from "./tipo-acoes";
 import { ADICIONAR_TAREFA, ALTERA_TAREFA, DEFINIR_TAREFAS, NOTIFICAR} from './tipo-mutacoes';
+import { EstadoDoProjeto } from "./modulos/projeto";
 
 
 export interface Estado {
-  projetos: IProjeto[],
+  projeto: EstadoDoProjeto
   tarefas: ITarefa[],
   notificacoes: INotificacao[]
 }
@@ -21,7 +22,9 @@ export const key: InjectionKey<Store<Estado>> = Symbol()
 
 export const store = createStore<Estado>({
   state: {
-    projetos: [],
+    projeto: {
+      projetos: []
+    },
     tarefas: [],
     notificacoes: []
   },
