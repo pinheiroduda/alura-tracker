@@ -3,6 +3,10 @@
     {
       "id": 1,
       "nome": "Alura Tracker"
+    },
+    {
+      "nome": "ByteBank",
+      "id": 2
     }
   ]
 }
