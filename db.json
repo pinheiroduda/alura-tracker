@@ -7,15 +7,6 @@
     {
       "nome": "ByteBank",
       "id": 2
-    },
-    {
-      "duracaoEmSegundos": 60,
-      "descricao": "Refatoração do código",
-      "projeto": {
-        "id": 1,
-        "nome": "Alura Tracker"
-      },
-      "id": 3
     }
   ],
   "tarefas": [
