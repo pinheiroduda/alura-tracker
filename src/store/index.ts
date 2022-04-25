@@ -4,7 +4,6 @@ import { createStore, Store, useStore as vuexUseStore } from "vuex";
 import http from "@/http"
 
 import { INotificacao } from "@/interfaces/INotificacao";
-import IProjeto from "@/interfaces/IProjeto";
 import ITarefa from "@/interfaces/ITarefa";
 
 import {  ALTERAR_TAREFA,CADASTRAR_TAREFA, OBTER_TAREFAS} from "./tipo-acoes";
