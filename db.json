@@ -22,7 +22,7 @@
     {
       "id": 1,
       "duracaoEmSegundos": 300,
-      "descricao": "Configuração do ambiente",
+      "descricao": "Configuração do ambiente de dev",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker"
