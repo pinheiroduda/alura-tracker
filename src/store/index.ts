@@ -61,8 +61,9 @@ export const store = createStore<Estado>({
     [ALTERAR_PROJETO] (contexto, projeto: IProjeto) {
       return http.put(`/projetos/${projeto.id}`, projeto)
     },
-    [REMOVER_PROJETO] (contexto, id: string) {
+    [REMOVER_PROJETO] ({ commit}, id: string) {
       return http.delete(`/projetos/${id}`)
+        .then(() => { commit(EXCLUI_PROJETO, id)})
     }
   }
 })
