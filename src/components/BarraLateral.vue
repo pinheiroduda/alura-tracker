@@ -38,7 +38,7 @@ export default defineComponent({
   },
 
   computed: {
-    textoBotao() {
+    textoBotao(): string {
       if (this.modoEscuroAtivo) {
         return 'Ativar modo claro'
       }
@@ -47,7 +47,7 @@ export default defineComponent({
   },
 
   methods: {
-    alterarTema() {
+    alterarTema(): void {
       this.modoEscuroAtivo = !this.modoEscuroAtivo
       this.$emit('aoAlterarTema', this.modoEscuroAtivo)
     }
