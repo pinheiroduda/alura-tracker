@@ -1,15 +1,28 @@
 <template>
   <FormularioComponent @aoSalvarTarefa="salvarTarefa" />
   <div class="lista">
+    <BoxComponent v-if="listaEstaVazia">
+      Ainda não foi registrada nenhuma tarefa hoje:/
+    </BoxComponent>
+    <div class="field">
+      <p class="control has-icons-left">
+        <input
+          class="input"
+          type="texto"
+          placeholder="Filtre sua busca"
+          v-model="filtro"
+        />
+        <span class="icon is-small is-left">
+          <i class="fas fa-search"></i>
+        </span>
+      </p>
+    </div>
     <TarefaComponent
       v-for="(tarefa, index) in tarefas"
       :key="index"
       :tarefa="tarefa"
       @aoClicarNaTarefa="selecionarTarefa"
     />
-    <BoxComponent v-if="listaEstaVazia">
-      Ainda não foi registrada nenhuma tarefa hoje:/
-    </BoxComponent>
     <div
       class="modal"
       :class="{ 'is-active': tarefaSelecionada }"
@@ -48,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import FormularioComponent from '../components/Formulario.vue'
 import TarefaComponent from '../components/Tarefa.vue'
 import BoxComponent from '../components/Box.vue'
@@ -103,9 +116,19 @@ export default defineComponent({
     const store = useStore()
     store.dispatch(OBTER_TAREFAS)
     store.dispatch(OBTER_PROJETOS)
+
+    const filtro = ref('')
+
+    const tarefas = computed(() =>
+      store.state.tarefa.tarefas.filter(
+        task => !filtro.value || task.descricao.includes(filtro.value)
+      )
+    )
+
     return {
       store,
-      tarefas: computed(() => store.state.tarefa.tarefas)
+      filtro,
+      tarefas
     }
   }
 })
