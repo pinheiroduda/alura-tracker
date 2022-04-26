@@ -1,5 +1,7 @@
 <template>
-  <div class="is-flex is-align-items-center is-justify-content-space-between">
+  <section
+    class="is-flex is-align-items-center is-justify-content-space-between"
+  >
     <CronometroComponent :tempoEmSegundos="tempoEmSegundos" />
     <BotaoComponent
       @clicado="iniciar"
@@ -13,7 +15,7 @@
       texto="stop"
       :desabilitado="!cronometroRodando"
     />
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -47,10 +49,10 @@ export default defineComponent({
       }, 1000)
     },
     finalizar() {
-      this.cronometroRodando = false
-      clearInterval(this.cronometro)
       this.$emit('aoTemporizadorSerFinalizado', this.tempoEmSegundos)
       this.tempoEmSegundos = 0
+      this.cronometroRodando = false
+      clearInterval(this.cronometro)
     }
   }
 })
