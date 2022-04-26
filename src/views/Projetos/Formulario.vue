@@ -36,7 +36,7 @@ export default defineComponent({
   // mounted() {
   //   if (this.id) {
   //     const projeto = this.store.state.projeto.projetos.find(
-  //       projeto => projeto.id === this.id
+  //       project => project.id === this.id
   //     )
   //     this.nomeDoProjeto = projeto?.nome || ''
   //   }
@@ -82,7 +82,7 @@ export default defineComponent({
 
     if (props.id) {
       const projeto = store.state.projeto.projetos.find(
-        projeto => projeto.id === props.id
+        project => project.id === props.id
       )
       nomeDoProjeto.value = projeto?.nome || ''
     }

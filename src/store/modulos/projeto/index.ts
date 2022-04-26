@@ -21,11 +21,11 @@ export const projeto: Module<EstadoDoProjeto, Estado> = {
       state.projetos.push(projeto)
     },
     [ALTERA_PROJETO](state, projeto: IProjeto) {
-      const index = state.projetos.findIndex( projeto => projeto.id === projeto.id)
+      const index = state.projetos.findIndex( project => project.id === projeto.id)
       state.projetos[index] = projeto
     },
     [EXCLUIR_PROJETO](state, id: string) {
-     state.projetos = state.projetos.filter(projeto => projeto.id !== id)
+     state.projetos = state.projetos.filter(project => project.id !== id)
     },
     [DEFINIR_PROJETOS](state, projetos: IProjeto[]) {
       state.projetos = projetos
