@@ -49,5 +49,10 @@ export const projeto: Module<EstadoDoProjeto, Estado> = {
       return http.delete(`/projetos/${id}`)
         .then(() => { commit(EXCLUIR_PROJETO, id)})
     },
+  },
+  getters: {
+    projetos (state) {
+      return state.projetos
+    }
   }
 }
