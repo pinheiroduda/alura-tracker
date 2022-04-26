@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import CronometroComponent from './Cronometro.vue'
 import BoxComponent from './Box.vue'
 import ITarefa from '@/interfaces/ITarefa'
@@ -37,9 +37,20 @@ export default defineComponent({
     }
   },
 
-  methods: {
-    tarefaClicada(): void {
-      this.$emit('aoClicarNaTarefa', this.tarefa)
+  setup(props, { emit }) {
+    const tarefaClicada = (): void => {
+      emit('aoClicarNaTarefa', props.tarefa)
+    }
+
+    const tempoGasto = computed(() => {
+      return new Date(props.tarefa.duracaoEmSegundos * 1000)
+        .toISOString()
+        .substr(11, 8)
+    })
+
+    return {
+      tarefaClicada,
+      tempoGasto
     }
   }
 })
