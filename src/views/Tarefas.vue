@@ -81,7 +81,7 @@ export default defineComponent({
   },
 
   methods: {
-    salvarTarefa(tarefa: ITarefa) {
+    salvarTarefa(tarefa: ITarefa): void {
       this.store.dispatch(CADASTRAR_TAREFA, tarefa)
     },
     selecionarTarefa(tarefa: ITarefa) {
