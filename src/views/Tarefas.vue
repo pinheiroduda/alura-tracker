@@ -67,17 +67,17 @@ import ITarefa from '@/interfaces/ITarefa'
 export default defineComponent({
   name: 'TarefasView',
 
-  data() {
-    return {
-      tarefaSelecionada: null as ITarefa | null
-    }
-  },
-
   components: {
     FormularioComponent,
     TarefaComponent,
     BoxComponent,
     ModalComponent
+  },
+
+  data() {
+    return {
+      tarefaSelecionada: null as ITarefa | null
+    }
   },
 
   methods: {
