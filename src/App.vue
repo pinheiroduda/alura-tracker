@@ -6,7 +6,7 @@
     <div class="column is-one-quarter">
       <BarraLateralComponent @aoAlterarTema="trocarTema" />
     </div>
-    <div class="column is-three-quarter conteudo">
+    <div class="column is-three-quarters conteudo">
       <NotificacoesComponent />
       <router-view></router-view>
     </div>
